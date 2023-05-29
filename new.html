@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maringo Sports Club</title>
+  <style>
+    /* CSS for unique UI/UX design and animated background */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #FF512F, #DD2476);
+      z-index: -1;
+      animation: animateBackground 20s linear infinite;
+    }
+
+    @keyframes animateBackground {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    .sports-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .sport {
+      flex-basis: 30%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    .sport img {
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background-color: #555;
+    }
+
+    /* CSS for popup box */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .popup {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 400px;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .popup h2 {
+      margin-top: 0;
+    }
+
+    .popup input[type="email"],
+    .popup input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .popup .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .popup .buttons button {
+      margin: 0 5px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .popup .buttons button:hover {
+      background-color: #555;
+    }
+
+    /* CSS for animation */
+    @keyframes slideIn {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <script>
+    // JavaScript for popup box functionality
+    document.addEventListener("DOMContentLoaded", function() {
+      var loginButton = document.getElementById("loginButton");
+      var signupButton = document.getElementById("signupButton");
+      var loginPopup = document.getElementById("loginPopup");
+      var signupPopup = document.getElementById("signupPopup");
+      var closeButtons = document.querySelectorAll(".close");
+
+      loginButton.addEventListener("click", function() {
+        loginPopup.style.display = "flex";
+        loginPopup.style.animation = "slideIn 0.3s ease";
+      });
+
+      signupButton.addEventListener("click", function() {
+        signupPopup.style.display = "flex";
+        signupPopup.style.animation = "slideIn 0.3s ease";
+      });
+
+      closeButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+          button.parentNode.parentNode.style.animation = "none";
+          button.parentNode.parentNode.style.display = "none";
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Maringo Sports Club</h1>
+  </header>
+
+  <main>
+    <div class="sports-section">
+      <div class="sport">
+        <img src="football.jpg" alt="Football">
+        <h2>Football</h2>
+        <p>Learn about the football programs at Maringo Sports Club.</p>
+      </div>
+
+      <div class="sport">
+        <img src="cricket.jpg" alt="Cricket">
+        <h2>Cricket</h2>
+        <p>Discover the cricket opportunities available at Maringo Sports Club.</p>
+      </div>
+
+      <div class="sport">
+        <img src="swimming.jpg" alt="Swimming">
+        <h2>Swimming</h2>
+        <p>Explore our swimming facilities and programs for all ages.</p>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a id="loginButton" href="#">Login</a>
+      <a id="signupButton" href="#">Sign up</a>
+    </div>
+  </main>
+
+  <!-- Login Popup -->
+  <div class="overlay" id="loginPopup">
+    <div class="popup">
+      <h2>Login</h2>
+      <form action="login.php" method="POST">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <div class="buttons">
+          <a href="#">Forgot Password?</a>
+          <button type="submit">Next</button>
+        </div>
+      </form>
+      <span class="close">X</span>
+    </div>
+  </div>
+
+  <!-- Signup Popup -->
+  <div class="overlay" id="signupPopup">
+    <div class="popup">
+      <h2>Sign up</h2>
+      <form action="signup.php" method="POST">
+        <label for="signupEmail">Email Address</label>
+        <input type="email" id="signupEmail" name="signupEmail" required>
+
+        <label for="signupPassword">Password (8 characters, letters and numbers)</label>
+        <input type="password" id="signupPassword" name="signupPassword" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+
+        <div class="buttons">
+          <button type="submit">Continue</button>
+        </div>
+      </form>
+      <span class="close">CLOSE</span>
+    </div>
+  </div>
+
+  <div class="background"></div>
+</body>
+</html>
